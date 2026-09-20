@@ -92,6 +92,7 @@ CITY_OPTIONS = [
 # ----------------------------------------------------------------------
 st.title("📉 Telco Customer Churn Predictor")
 st.caption(f"Model in use: **{model_name}**")
+st.write("**Developed by Mohamed Turky**")
 st.write("Enter a customer's details below to estimate their probability of churning.")
 
 # ----------------------------------------------------------------------
