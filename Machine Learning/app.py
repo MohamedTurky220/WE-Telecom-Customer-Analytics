@@ -31,6 +31,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import streamlit as st
+from pathlib import Path
 
 # ----------------------------------------------------------------------
 # Page setup
@@ -46,13 +47,17 @@ st.set_page_config(
 # ----------------------------------------------------------------------
 @st.cache_resource
 def load_artifacts():
-    model = joblib.load("churn_best_model.pkl")
-    scaler = joblib.load("churn_scaler.pkl")
-    model_columns = joblib.load("churn_model_columns.pkl")
+    base_dir = Path(__file__).resolve().parent
+
+    model = joblib.load(base_dir / "churn_best_model.pkl")
+    scaler = joblib.load(base_dir / "churn_scaler.pkl")
+    model_columns = joblib.load(base_dir / "churn_model_columns.pkl")
+
     try:
-        model_name = joblib.load("churn_best_model_name.pkl")
+        model_name = joblib.load(base_dir / "churn_best_model_name.pkl")
     except FileNotFoundError:
         model_name = type(model).__name__
+
     return model, scaler, model_columns, model_name
 
 
